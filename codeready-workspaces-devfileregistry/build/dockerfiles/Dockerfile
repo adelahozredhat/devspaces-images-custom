@@ -50,7 +50,7 @@ RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
 
 COPY ./build/scripts ./arbitrary-users-patch/base_images /build/
 COPY ./devfiles /build/devfiles
-COPY ./resources /build/resources
+####COPY ./resources /build/resources
 WORKDIR /build/
 
 # Registry, organization, and tag to use for base images in dockerfiles. Devfiles

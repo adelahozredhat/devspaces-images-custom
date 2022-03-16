@@ -13,6 +13,39 @@ metadata:
   name: codeready-devfile-registry
 objects:
   - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      labels:
+        app: codeready-devfile-registry-external
+      name: devfile-custom-example
+      namespace: openshift-workspaces
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: docker-build
+      namespace: openshift-workspaces
+      labels:
+        app: codeready-devfile-registry-external
+        name: docker-build
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: ${IMAGE}:${IMAGE_TAG}
+      
+      strategy:
+        type: Docker
+        dockerStrategy:
+          dockerfilePath: build/dockerfiles/Dockerfile
+      source:
+        type: Git
+        git:
+          uri: 'https://github.com/adelahozredhat/devspaces-images-custom.git'
+          ref: crw-2-rhel-8
+        contextDir: codeready-workspaces-devfileregistry
+      triggers:
+        - type: ConfigChange
+  - apiVersion: v1
     kind: DeploymentConfig
     metadata:
       labels:
@@ -39,7 +72,7 @@ objects:
             component: devfile-registry
         spec:
           containers:
-            - image: ${IMAGE}:${IMAGE_TAG}
+            - image: ${REGISTRY}/${IMAGE}:${IMAGE_TAG}
               imagePullPolicy: ${PULL_POLICY}
               name: devfile-registry
               ports:
@@ -109,6 +142,7 @@ objects:
       CRW_DEVFILE_IMAGES_REGISTRY_URL: ${CRW_DEVFILE_IMAGES_REGISTRY_URL}
       CRW_DEVFILE_IMAGES_REGISTRY_ORGANIZATION: ${CRW_DEVFILE_IMAGES_REGISTRY_ORGANIZATION}
       CRW_DEVFILE_IMAGES_REGISTRY_TAG: ${CRW_DEVFILE_IMAGES_REGISTRY_TAG}
+      CHE_DEVFILE_REGISTRY_URL: ${CHE_DEVFILE_REGISTRY_URL}
 parameters:
   - name: IMAGE
     value: registry.redhat.io/codeready-workspaces/devfileregistry-rhel8
@@ -139,3 +173,11 @@ parameters:
     displayName: Devfile image registry tag
     description: Tag used for custom devfile images; used to override base images
       in devfiles
+  - name: REGISTRY
+    value: registry.redhat.io/codeready-workspaces
+    displayName: CodeReady Workspaces devfile registry
+    description: CodeReady Workspaces devfile registry container image. Defaults to
+      registry.redhat.io/codeready-workspaces
+  - name: CHE_DEVFILE_REGISTRY_URL
+    displayName: Devfile registry public url
+    description: Devfile registry public url
