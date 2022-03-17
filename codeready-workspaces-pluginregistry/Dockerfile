@@ -51,7 +51,6 @@ COPY ./v3/plugins/ /build/v3/plugins/
 COPY ./v3/images/*.png /build/v3/images/
 WORKDIR /build/
 RUN npx @eclipse-che/plugin-registry-generator@"${REGISTRY_GENERATOR_VERSION}" --root-folder:"$(pwd)" --output-folder:"$(pwd)/output" "${BUILD_FLAGS_ARRAY[@]}" --skip-digest-generation:true
-COPY ./v3/output/ /build/v3/output/
 
 # RUN tar -xvf resources.tgz -C ./
 RUN rm -rf ./output/v3/che-theia-plugins.yaml ./output/v3/che-editors.yaml ./output/v3/che-plugins.yaml
