@@ -23,7 +23,7 @@ components:
   -
     type: dockerimage
     alias: maven
-    image: registry.redhat.io/codeready-workspaces/udi-rhel8latest
+    image: registry.redhat.io/codeready-workspaces/udi-rhel8:latest
     env:
       - name: JAVA_OPTS
         value: "-XX:MaxRAMPercentage=50.0 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10

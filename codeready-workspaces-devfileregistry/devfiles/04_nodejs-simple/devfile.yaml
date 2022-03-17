@@ -15,7 +15,7 @@ components:
     id: ms-vscode/node-debug2/latest
   - type: dockerimage
     alias: nodejs
-    image: registry.redhat.io/codeready-workspaces/udi-rhel8latest
+    image: registry.redhat.io/codeready-workspaces/udi-rhel8:latest
     memoryLimit: 512Mi
     endpoints:
       - name: "nodejs"

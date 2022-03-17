@@ -19,7 +19,7 @@ components:
 -
   type: dockerimage
   alias: php
-  image: registry.redhat.io/codeready-workspaces/udi-rhel8latest
+  image: registry.redhat.io/codeready-workspaces/udi-rhel8:latest
   memoryLimit: 512Mi
   mountSources: true
   endpoints:
