@@ -60,10 +60,10 @@ objects:
         component: plugin-registry
       strategy:
         rollingParams:
-          intervalSeconds: 1
+          intervalSeconds: 100
           maxSurge: 25%
           maxUnavailable: 25%
-          timeoutSeconds: 600
+          timeoutSeconds: 3000
           updatePeriodSeconds: 1
         type: Rolling
       template:
