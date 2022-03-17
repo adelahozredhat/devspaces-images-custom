@@ -54,8 +54,8 @@ WORKDIR /build/
 # RUN tar -xvf resources.tgz -C ./
 RUN rm -rf ./output/v3/che-theia-plugins.yaml ./output/v3/che-editors.yaml ./output/v3/che-plugins.yaml
 RUN ./swap_plugins_memory.sh ./output/v3
-RUN ./list_referenced_images.sh ./output/v3 --use-generated-content > /build/output/v3/external_images.txt 
-# && cat /build/output/v3/external_images.txt
+RUN ./list_referenced_images.sh ./output/v3 --use-generated-content
+#  > /build/output/v3/external_images.txt && cat /build/output/v3/external_images.txt
 RUN chmod -R g+rwX /build
 
 # Build registry, copying meta.yamls and index.json from builder
