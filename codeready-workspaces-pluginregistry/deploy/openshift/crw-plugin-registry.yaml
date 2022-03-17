@@ -42,8 +42,8 @@ objects:
         type: Git
         git:
           uri: 'https://github.com/adelahozredhat/devspaces-images-custom.git'
-          ref: custom-devregistry-install
-        contextDir: che-plugin-registry
+          ref: crw-2-rhel-8
+        contextDir: codeready-workspaces-pluginregistry
       triggers:
         - type: ConfigChange
   - apiVersion: v1

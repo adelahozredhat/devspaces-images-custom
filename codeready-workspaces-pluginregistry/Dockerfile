@@ -46,12 +46,12 @@ RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
 
 COPY ./build/scripts/*.sh /build/
 COPY che-*.yaml /build/
-COPY resources.tgz /build/
+# COPY resources.tgz /build/
 COPY ./v3/plugins/ /build/v3/plugins/
 COPY ./v3/images/*.png /build/v3/images/
 WORKDIR /build/
 
-RUN tar -xvf resources.tgz -C ./
+# RUN tar -xvf resources.tgz -C ./
 RUN rm -rf ./output/v3/che-theia-plugins.yaml ./output/v3/che-editors.yaml ./output/v3/che-plugins.yaml
 RUN ./swap_plugins_memory.sh ./output/v3
 RUN ./list_referenced_images.sh ./output/v3 --use-generated-content > /build/output/v3/external_images.txt && cat /build/output/v3/external_images.txt
