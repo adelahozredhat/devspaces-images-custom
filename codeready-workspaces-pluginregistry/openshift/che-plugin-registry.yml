@@ -40,7 +40,7 @@ objects:
     source:
       type: Git
       git:
-        uri: 'https://github.com/eits-lafargeholcim/codeready-workspaces.git'
+        uri: 'https://github.com/adelahozredhat/devspaces-images-custom.git'
         ref: custom-devregistry-install
       contextDir: che-plugin-registry
     triggers:
