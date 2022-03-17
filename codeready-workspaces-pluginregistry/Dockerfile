@@ -94,7 +94,7 @@ WORKDIR /var/www/html
 
 RUN mkdir -m 777 /var/www/html/v3
 COPY README.md .htaccess /var/www/html/
-COPY --from=builder /build/output/v3 /var/www/html/v3
+# COPY --from=builder /build/output/v3 /var/www/html/v3
 COPY --from=builder /build/v3/plugins/ /var/www/html/v3/plugins/
 COPY --from=builder /build/v3/images/ /var/www/html/v3/images/
 COPY ./build/dockerfiles/rhel.entrypoint.sh ./build/dockerfiles/entrypoint.sh /usr/local/bin/
