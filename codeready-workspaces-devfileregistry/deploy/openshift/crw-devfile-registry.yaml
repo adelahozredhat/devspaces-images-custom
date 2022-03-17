@@ -22,11 +22,11 @@ objects:
   - apiVersion: v1
     kind: BuildConfig
     metadata:
-      name: docker-build
+      name: docker-build-devfile
       namespace: openshift-workspaces
       labels:
         app: codeready-devfile-registry-external
-        name: docker-build
+        name: docker-build-devfile
     spec:
       output:
         to:

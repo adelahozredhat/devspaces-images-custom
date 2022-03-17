@@ -33,3 +33,15 @@ This repo also contains an identical copy of the [Jenkinsfiles and groovy](https
     * [tag sources & collect manifests](https://github.com/redhat-developer/codeready-workspaces-images/blob/crw-2-rhel-8/crw-jenkins/jobs/CRW_CI/Releng/get-3rd-party-deps-manifests.groovy), [collect sources](https://github.com/redhat-developer/codeready-workspaces-images/blob/crw-2-rhel-8/crw-jenkins/jobs/CRW_CI/Releng/get-3rd-party-sources.groovy) to create a release
     * set up subsequent releases ([branching](https://github.com/redhat-developer/codeready-workspaces-images/blob/crw-2-rhel-8/crw-jenkins/jobs/CRW_CI/Releng/create-branches.groovy), [bumping versions](https://github.com/redhat-developer/codeready-workspaces-images/blob/crw-2-rhel-8/crw-jenkins/jobs/CRW_CI/Releng/update-version-and-registry-tags.groovy))
 
+
+
+## For CRC
+
+oc create namespace openshift-workspaces
+
+oc project openshift-workspaces
+
+oc new-app -f deploy/openshift/crw-devfile-registry.yaml -p REGISTRY="default-route-openshift-image-registry.apps-crc.testing/openshift-workspaces" -p IMAGE="devfile-custom-example" -p IMAGE_TAG="latest" -p PULL_POLICY="Always" -p CHE_DEVFILE_REGISTRY_URL="https://devfile-registry-openshift-workspaces.apps-crc.testing"
+
+
+oc new-app -f deploy/openshift/crw-plugin-registry.yaml -p REGISTRY="default-route-openshift-image-registry.apps-crc.testing/openshift-workspaces" -p IMAGE="plugin-custom-example" -p IMAGE_TAG="latest" -p PULL_POLICY="Always" -p CHE_PLUGIN_REGISTRY_URL="https://che-plugin-registry-openshift-workspaces.apps-crc.testing"

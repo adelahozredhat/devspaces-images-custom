@@ -13,6 +13,39 @@ metadata:
   name: che-plugin-registry-service
 objects:
 - apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: codeready-plugin-registry-external
+    name: plugin-custom-example
+    namespace: openshift-workspaces
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: docker-build-plugin
+    namespace: openshift-workspaces
+    labels:
+      app: codeready-plugin-registry-external
+      name: docker-build-plugin
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${IMAGE}:${IMAGE_TAG}
+    
+    strategy:
+      type: Docker
+      dockerStrategy:
+        dockerfilePath: build/dockerfiles/Dockerfile
+    source:
+      type: Git
+      git:
+        uri: 'https://github.com/eits-lafargeholcim/codeready-workspaces.git'
+        ref: custom-devregistry-install
+      contextDir: che-plugin-registry
+    triggers:
+      - type: ConfigChange
+- apiVersion: v1
   kind: DeploymentConfig
   metadata:
     labels:
@@ -38,7 +71,7 @@ objects:
           deploymentconfig: che-plugin-registry
       spec:
         containers:
-        - image: ${IMAGE}:${IMAGE_TAG}
+        - image: ${REGISTRY}/${IMAGE}:${IMAGE_TAG}
           imagePullPolicy: "${PULL_POLICY}"
           name: che-plugin-registry
           ports:
@@ -97,6 +130,7 @@ objects:
     CHE_SIDECAR_CONTAINERS_REGISTRY_URL: ${CHE_SIDECAR_CONTAINERS_REGISTRY_URL}
     CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION: ${CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION}
     CHE_SIDECAR_CONTAINERS_REGISTRY_TAG: ${CHE_SIDECAR_CONTAINERS_REGISTRY_TAG}
+    CHE_PLUGIN_REGISTRY_URL: ${CHE_PLUGIN_REGISTRY_URL}
 
 parameters:
 - name: IMAGE
@@ -124,3 +158,11 @@ parameters:
 - name: CHE_SIDECAR_CONTAINERS_REGISTRY_TAG
   displayName: Plugin sidecar images tag
   description: Tag used for overridden sidecar images; used to override base images in plugins
+- name: REGISTRY
+  value: registry.redhat.io/codeready-workspaces
+  displayName: CodeReady Workspaces devfile registry
+  description: CodeReady Workspaces devfile registry container image. Defaults to
+    registry.redhat.io/codeready-workspaces
+- name: CHE_PLUGIN_REGISTRY_URL
+  displayName: Devfile registry public url
+  description: Devfile registry public url
