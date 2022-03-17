@@ -51,11 +51,13 @@ COPY ./v3/plugins/ /build/v3/plugins/
 COPY ./v3/images/*.png /build/v3/images/
 WORKDIR /build/
 
+RUN npx @eclipse-che/plugin-registry-generator@"${REGISTRY_GENERATOR_VERSION}" --root-folder:"$(pwd)" --output-folder:"$(pwd)/output" "${BUILD_FLAGS_ARRAY[@]}" --skip-digest-generation:true
+COPY ./v3/output/ /build/v3/output/
+
 # RUN tar -xvf resources.tgz -C ./
 RUN rm -rf ./output/v3/che-theia-plugins.yaml ./output/v3/che-editors.yaml ./output/v3/che-plugins.yaml
 RUN ./swap_plugins_memory.sh ./output/v3
-RUN ./list_referenced_images.sh ./output/v3 --use-generated-content
-#  > /build/output/v3/external_images.txt && cat /build/output/v3/external_images.txt
+RUN ./list_referenced_images.sh ./output/v3 --use-generated-content > /build/output/v3/external_images.txt && cat /build/output/v3/external_images.txt
 RUN chmod -R g+rwX /build
 
 # Build registry, copying meta.yamls and index.json from builder
@@ -94,7 +96,7 @@ WORKDIR /var/www/html
 
 RUN mkdir -m 777 /var/www/html/v3
 COPY README.md .htaccess /var/www/html/
-# COPY --from=builder /build/output/v3 /var/www/html/v3
+COPY --from=builder /build/output/v3 /var/www/html/v3
 COPY --from=builder /build/v3/plugins/ /var/www/html/v3/plugins/
 COPY --from=builder /build/v3/images/ /var/www/html/v3/images/
 COPY ./build/dockerfiles/rhel.entrypoint.sh ./build/dockerfiles/entrypoint.sh /usr/local/bin/
