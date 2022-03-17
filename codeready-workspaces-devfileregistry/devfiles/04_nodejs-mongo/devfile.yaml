@@ -15,7 +15,7 @@ components:
     id: ms-vscode/node-debug2/latest
   - type: dockerimage
     alias: nodejs
-    image: registry.redhat.io/codeready-workspaces/udi-rhel8:latest
+    image: registry.redhat.io/codeready-workspaces/plugin-java8-rhel8@sha256:8cb1e495825051b83cf903bb317e55823a6f57b3bad92e9407dc8fa59c24c0cc
     env:
       # The values below are used to set up the environment for running the application
       - name: SECRET

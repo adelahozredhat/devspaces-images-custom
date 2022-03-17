@@ -58,7 +58,7 @@ initTest "Should replace image references in external_images.txt with RELATED_IM
 
 externalImagesTxt=$(cat <<-END
 registry.redhat.io/rhscl/mongodb-36-rhel7:1-50
-registry.redhat.io/codeready-workspaces/udi-rhel8:latest
+registry.redhat.io/codeready-workspaces/plugin-java8-rhel8@sha256:8cb1e495825051b83cf903bb317e55823a6f57b3bad92e9407dc8fa59c24c0cc
 END
 )
 expected_externalImagesTxt=$(cat <<-END
