@@ -8,8 +8,7 @@
 # SPDX-License-Identifier: EPL-2.0
 
 set -e
-
-TEMP_REPO=$(mkdir /tmp/$5)
+# TEMP_REPO=$(mktemp -d -u)
 
 # Clone a git repository and create an archive zip at a specified location
 # Args:
@@ -26,7 +25,7 @@ function clone_and_zip() {
   local sparse_checkout_dir="$4"
   local project_name="$5"
 
-  # mkdir /tmp/"$project_name"
+  mkdir /tmp/"$project_name"
   git clone "$repo" -b "$branch" --depth 1 /tmp/"$project_name" -q
   pushd /tmp/"$project_name" &>/dev/null
     if [ -n "$sparse_checkout_dir" ]; then
