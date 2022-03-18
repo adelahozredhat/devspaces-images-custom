@@ -125,6 +125,6 @@ RUN ./cache_projects.sh devfiles resources && \
 
 FROM registry AS offline-registry
 COPY --from=offline-builder /build/devfiles /var/www/html/devfiles
-####COPY --from=offline-builder /build/resources /var/www/html/resources
+COPY --from=offline-builder /build/resources /var/www/html/resources
 
 # append Brew metadata here
