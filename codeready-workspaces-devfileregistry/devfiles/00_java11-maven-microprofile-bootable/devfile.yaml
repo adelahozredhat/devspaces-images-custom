@@ -7,7 +7,7 @@ projects:
     name: jboss-eap-bootable
     source:
       location: "https://github.com/crw-samples/microprofile-quickstart-bootable.git"
-      branch: "xp-2.0.x"
+      branch: "devfilev2"
       type: git
 components:
   -
