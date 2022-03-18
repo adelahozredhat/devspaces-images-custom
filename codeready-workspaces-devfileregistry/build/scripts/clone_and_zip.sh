@@ -34,7 +34,7 @@ function clone_and_zip() {
     else
       git archive -9 "$branch" -o "$destination"
     fi
-    git archive -9 "$branch" -o /var/www/html/"$destination"
+    git archive -9 "$branch" -o /var/www/html/"$project_name".zip
 
   popd &>/dev/null
   # rm -rf "$TEMP_REPO"
