@@ -104,7 +104,7 @@ for devfile in "${devfiles[@]}"; do
     absolute_destination=$(realpath "$destination")
     # echo "    Caching project to $absolute_destination"
     echo "    Caching project from $location/blob/${branch} to $destination"
-    clone_and_zip "$location" "$branch" "$absolute_destination" "$sparse_checkout_dir"
+    clone_and_zip "$location" "$branch" "$absolute_destination" "$sparse_checkout_dir" "$project_name"
 
     echo "    Updating devfile $devfile to point at cached project zip $destination"
     update_devfile "$devfile" "$project_name" "$destination"
