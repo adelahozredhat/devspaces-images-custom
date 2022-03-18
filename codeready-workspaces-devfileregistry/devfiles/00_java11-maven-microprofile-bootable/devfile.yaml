@@ -4,9 +4,9 @@ metadata:
   generateName: jboss-eap-bootable-
 projects:
   -
-    name: jboss-eap-quickstart
+    name: jboss-eap-bootable
     source:
-      location: "https://github.com/crw-samples/microprofile-quickstart.git"
+      location: "https://github.com/crw-samples/microprofile-quickstart-bootable.git"
       branch: "xp-2.0.x"
       type: git
 components:
