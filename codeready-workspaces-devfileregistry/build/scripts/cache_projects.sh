@@ -81,7 +81,10 @@ for devfile in "${devfiles[@]}"; do
   devfile_name=$(get_devfile_name "$devfile")
   devfile_name=${devfile_name%-}
   for project in $(yq -c '.projects[]?' "$devfile"); do
+
     project_name=$(echo "$project" | jq -r '.name')
+
+    echo "Caching project $project_name"
 
     type=$(echo "$project" | jq -r '.source.type')
     if [ "$type" != "git" ]; then
