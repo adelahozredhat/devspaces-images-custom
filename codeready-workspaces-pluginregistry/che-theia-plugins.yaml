@@ -260,6 +260,18 @@ plugins:
       cpuRequest: 30m
     extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/ve96a2bb/vscode-yaml-0.14.0.vsix
   - repository:
+      url: 'https://github.com/ansible/vscode-ansible'
+      revision: v0.8.1
+    featured: true
+    sidecar:
+      image: "registry.redhat.io/codeready-workspaces/plugin-java8-rhel8@sha256:8cb1e495825051b83cf903bb317e55823a6f57b3bad92e9407dc8fa59c24c0cc"
+      name: vscode-ansible
+      memoryLimit: 256Mi
+      memoryRequest: 20Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+    extension: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/ansible/0.8.1/vspackage
+  - repository:
       url: 'https://github.com/microsoft/vscode-java-test'
       revision: 0.28.1
     metaYaml:
