@@ -20,3 +20,24 @@ USER 0
 RUN yum -y -q update
 RUN yum install -y -q curl vim policycoreutils python3-policycoreutils yum-utils
 RUN pip install setuptools_rust wheel ansible ansible-builder ansible-runner ansible-navigator ansible-test
+
+CMD tail -f /dev/null
+
+# append Brew metadata here
+ENV SUMMARY="Red Hat CodeReady Workspaces - OpenJDK 8 + Node 12 + Python 3.8 plugin container" \
+    DESCRIPTION="Red Hat CodeReady Workspaces - OpenJDK 8 + Node 12 + Python 3.8 plugin container" \
+    PRODNAME="codeready-workspaces" \
+    COMPNAME="plugin-java8-rhel8"
+
+LABEL summary="$SUMMARY" \
+      description="$DESCRIPTION" \
+      io.k8s.description="$DESCRIPTION" \
+      io.k8s.display-name="$DESCRIPTION" \
+      io.openshift.tags="$PRODNAME,$COMPNAME" \
+      com.redhat.component="$PRODNAME-$COMPNAME-container" \
+      name="$PRODNAME/$COMPNAME" \
+      version="2.15" \
+      license="EPLv2" \
+      maintainer="Nick Boldt <nboldt@redhat.com>" \
+      io.openshift.expose-services="" \
+      usage=""

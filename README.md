@@ -47,3 +47,15 @@ oc new-app -f deploy/openshift/crw-plugin-registry.yaml -p REGISTRY="default-rou
 
 
 oc new-app -f dev-files-template.yaml
+
+
+
+Para crear los credenciales de registry
+
+user --> admin
+
+password --> oc whoami -t
+
+añadirlos en la pagina de codeready dle usuario
+
+image-registry.openshift-image-registry.svc:5000
