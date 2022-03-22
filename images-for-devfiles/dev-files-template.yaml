@@ -16,8 +16,8 @@ objects:
     kind: ImageStream
     metadata:
       labels:
-        app: images-for-devfiles
-      name: images-for-devfiles
+        app: ansible-test-image
+      name: ansible-test-image
       namespace: openshift-workspaces
   - apiVersion: v1
     kind: BuildConfig
