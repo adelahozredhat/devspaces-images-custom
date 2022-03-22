@@ -1,7 +1,7 @@
 ---
-displayName: IntelliJ IDEA Community Edition
-description: IntelliJ IDEA Community Edition based editor stack
-tags: ["Tech-Preview", "JetBrains", "Java", "RHEL8", "IntelliJ", "IDEA"]
-icon: /images/type-intellij.svg
+displayName: Ansible Collection template
+description: Ansible Collection template
+tags: ["Ansible","Ansible collection"]
+icon: /images/type-ansible.svg
 links:
   v2: https://github.com/crw-samples/gradle-demo-project/tree/devfilev2

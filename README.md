@@ -37,8 +37,6 @@ This repo also contains an identical copy of the [Jenkinsfiles and groovy](https
 
 ## For CRC
 
-npx @eclipse-che/plugin-registry-generator@"${REGISTRY_GENERATOR_VERSION}" --root-folder:"$(pwd)" --output-folder:"$(pwd)/output" "${BUILD_FLAGS_ARRAY[@]}" --skip-digest-generation:true
-
 oc create namespace openshift-workspaces
 
 oc project openshift-workspaces
@@ -46,3 +44,6 @@ oc project openshift-workspaces
 oc new-app -f deploy/openshift/crw-devfile-registry.yaml -p REGISTRY="default-route-openshift-image-registry.apps-crc.testing/openshift-workspaces" -p IMAGE="devfile-custom-example" -p IMAGE_TAG="latest" -p PULL_POLICY="Always" -p CHE_DEVFILE_REGISTRY_URL="https://devfile-registry-openshift-workspaces.apps-crc.testing"
 
 oc new-app -f deploy/openshift/crw-plugin-registry.yaml -p REGISTRY="default-route-openshift-image-registry.apps-crc.testing/openshift-workspaces" -p IMAGE="plugin-custom-example" -p IMAGE_TAG="latest" -p PULL_POLICY="Always" -p CHE_PLUGIN_REGISTRY_URL="https://plugin-registry-openshift-workspaces.apps-crc.testing"
+
+
+oc new-app -f dev-files-template.yaml
