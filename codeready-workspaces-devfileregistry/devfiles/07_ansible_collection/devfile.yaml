@@ -23,9 +23,51 @@ components:
   memoryLimit: 512Mi
   mountSources: true
 commands:
+
 -
-  name: 1. Install dependencies
+  name: 1. Execute install module
   actions:
     - type: exec
       component: ansible
-      command: "ansible-test"
+      command: "pip install -e ."
+      workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
+
+-
+  name: 1. Execute build galaxy
+  actions:
+    - type: exec
+      component: ansible
+      command: "ansible-galaxy collection build"
+      workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
+
+-
+  name: 2. Execute sanity
+  actions:
+    - type: exec
+      component: ansible
+      command: "ansible-test sanity"
+      workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
+
+-
+  name: 3. Execute units
+  actions:
+    - type: exec
+      component: ansible
+      command: "ansible-test units"
+      workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
+
+-
+  name: 4. Execute integration
+  actions:
+    - type: exec
+      component: ansible
+      command: "ansible-test integration"
+      workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
+
+-
+  name: 5. Execute coverage
+  actions:
+    - type: exec
+      component: ansible
+      command: "ansible-test coverage"
+      workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"

@@ -19,7 +19,7 @@ USER 0
 
 RUN yum -y -q update
 RUN yum install -y -q curl vim policycoreutils python3-policycoreutils yum-utils
-RUN pip install setuptools_rust wheel ansible ansible-builder ansible-runner ansible-navigator 
+RUN pip install setuptools pytest-mock mock setuptools_rust wheel ansible ansible-builder ansible-runner requests ansible-navigator 
 
 CMD tail -f /dev/null
 
