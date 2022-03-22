@@ -21,6 +21,7 @@ components:
   alias: ansible
   image: image-registry.openshift-image-registry.svc:5000/openshift-workspaces/ansible-test-image
   memoryLimit: 512Mi
+  mountSources: true
 commands:
 -
   name: 1. Install dependencies
