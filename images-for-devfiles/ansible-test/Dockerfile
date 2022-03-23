@@ -20,7 +20,7 @@ USER 0
 RUN yum -y -q update
 RUN yum install -y -q curl vim policycoreutils python3-policycoreutils yum-utils
 RUN pip install --upgrade pip
-RUN pip install setuptools==45.2.0 mock wheel==0.34.2 ansible==5.3.0 requests==2.25.1 pytest==6.2.5
+RUN pip install setuptools==45.2.0 mock wheel==0.34.2 ansible==5.3.0 requests==2.25.1 pytest==6.2.5 pytest-forked==1.3.0 pytest-mock==3.6.1 pytest-xdist==2.4.0
 
 CMD tail -f /dev/null
 
