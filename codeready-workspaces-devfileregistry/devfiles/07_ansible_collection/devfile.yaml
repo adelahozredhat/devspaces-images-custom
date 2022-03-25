@@ -25,7 +25,7 @@ components:
   type: dockerimage
   alias: ansible
   image: image-registry.openshift-image-registry.svc:5000/openshift-workspaces/ansible-test-image
-  memoryLimit: 1Gi
+  memoryLimit: 2Gi
   mountSources: true
 commands:
 
