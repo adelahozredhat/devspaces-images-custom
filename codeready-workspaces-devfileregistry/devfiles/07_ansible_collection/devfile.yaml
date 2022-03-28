@@ -23,8 +23,14 @@ components:
     python.globalModuleInstallation: true
 -
   type: dockerimage
-  alias: ansible
+  alias: ansible-test
   image: image-registry.openshift-image-registry.svc:5000/openshift-workspaces/ansible-test-image
+  memoryLimit: 2Gi
+  mountSources: true
+-
+  type: dockerimage
+  alias: ansible-navigator
+  image: image-registry.openshift-image-registry.svc:5000/openshift-workspaces/ansible-navigator-image
   memoryLimit: 2Gi
   mountSources: true
 commands:
@@ -33,7 +39,7 @@ commands:
   name: 1. Execute install module
   actions:
     - type: exec
-      component: ansible
+      component: ansible-test
       command: "pip install -e ."
       workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
 
@@ -41,15 +47,15 @@ commands:
   name: 1. Execute build galaxy
   actions:
     - type: exec
-      component: ansible
-      command: "ansible-galaxy collection build"
+      component: ansible-test
+      command: "ansible-galaxy collection build --force"
       workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
 
 -
   name: 2. Execute sanity
   actions:
     - type: exec
-      component: ansible
+      component: ansible-test
       command: "ansible-test sanity"
       workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
 
@@ -57,7 +63,7 @@ commands:
   name: 3. Execute units
   actions:
     - type: exec
-      component: ansible
+      component: ansible-test
       command: "ansible-test units"
       workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
 
@@ -65,7 +71,7 @@ commands:
   name: 4. Execute integration
   actions:
     - type: exec
-      component: ansible
+      component: ansible-test
       command: "ansible-test integration"
       workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
 
@@ -73,6 +79,6 @@ commands:
   name: 5. Execute coverage
   actions:
     - type: exec
-      component: ansible
+      component: ansible-test
       command: "ansible-test coverage"
       workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"

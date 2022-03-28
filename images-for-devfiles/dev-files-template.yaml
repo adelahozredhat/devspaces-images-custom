@@ -22,11 +22,11 @@ objects:
   - apiVersion: v1
     kind: BuildConfig
     metadata:
-      name: docker-build-images-for-devfiles
+      name: ansible-test-docker-build-images-for-devfiles
       namespace: openshift-workspaces
       labels:
         app: images-for-devfiles
-        name: docker-build-images-for-devfiles
+        name: ansible-test-docker-build-images-for-devfiles
     spec:
       output:
         to:
@@ -45,3 +45,37 @@ objects:
         contextDir: images-for-devfiles
       triggers:
         - type: ConfigChange
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      labels:
+        app: ansible-navigator-image
+      name: ansible-navigator-image
+      namespace: openshift-workspaces
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: ansible-navigator-docker-build-images-for-devfiles
+      namespace: openshift-workspaces
+      labels:
+        app: images-for-devfiles
+        name: ansible-navigator-docker-build-images-for-devfiles
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: ansible-navigator-image:latest
+      
+      strategy:
+        type: Docker
+        dockerStrategy:
+          dockerfilePath: ansible-navigator/Dockerfile
+      source:
+        type: Git
+        git:
+          uri: 'https://github.com/adelahozredhat/devspaces-images-custom.git'
+          ref: crw-2-rhel-8
+        contextDir: images-for-devfiles
+      triggers:
+        - type: ConfigChange
+
