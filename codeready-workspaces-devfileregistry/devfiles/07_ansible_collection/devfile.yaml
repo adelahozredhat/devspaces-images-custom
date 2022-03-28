@@ -82,3 +82,13 @@ commands:
       component: ansible-test
       command: "ansible-test coverage"
       workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
+
+
+-
+  name: 6. Execute coverage
+  actions:
+    - type: exec
+      component: ansible-navigator
+      command: "ansible-navigator"
+      workdir: ${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example
+      runAsUser: root
