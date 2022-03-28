@@ -90,5 +90,5 @@ commands:
     - type: exec
       component: ansible-navigator
       command: "ansible-navigator"
-      workdir: ${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example
+      workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
       runAsUser: root
