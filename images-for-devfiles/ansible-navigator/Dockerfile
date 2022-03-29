@@ -22,7 +22,6 @@ RUN yum install -y -q curl vim policycoreutils python3-policycoreutils yum-utils
 RUN pip install --upgrade pip
 RUN pip install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
 
-RUN useradd 1000660000;
 RUN echo 1000660000:10000:5000 > /etc/subuid
 RUN echo 1000660000:10000:5000 > /etc/subgid
 
