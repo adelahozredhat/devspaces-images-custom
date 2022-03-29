@@ -29,10 +29,7 @@ RUN echo podman:10000:5000 > /etc/subuid
 RUN echo podman:10000:5000 > /etc/subgid
 
 RUN mkdir /dev/net
-RUN mknod /dev/net/tun c 10 200
-RUN chmod 0666 /dev/net/tun
 RUN modprobe tun
-
 
 
 CMD tail -f /dev/null
