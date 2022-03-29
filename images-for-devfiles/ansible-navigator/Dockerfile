@@ -18,7 +18,7 @@ USER 0
 
 
 RUN yum -y -q update
-RUN yum install -y -q curl vim python3 policycoreutils python3-policycoreutils yum-utils podman fuse-overlayfs --exclude container-selinux
+RUN yum install -y -q curl vim python3 policycoreutils python3-policycoreutils yum-utils
 
 RUN pip3 install --upgrade pip
 RUN pip3 install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
