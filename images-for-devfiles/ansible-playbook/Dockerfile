@@ -19,6 +19,8 @@ USER 0
 
 RUN yum -y -q update
 RUN yum install -y -q curl vim policycoreutils python3-policycoreutils yum-utils
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install psutil
 RUN python3 -m venv myvirtual_venv
 RUN chmod 0755 myvirtual_venv
 RUN source myvirtual_venv/bin/activate
