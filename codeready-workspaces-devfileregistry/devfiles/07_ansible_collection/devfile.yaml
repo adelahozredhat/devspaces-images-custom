@@ -101,5 +101,5 @@ commands:
   actions:
     - type: exec
       component: ansible-navigator
-      command: "ansible-navigator"
+      command: "ansible-navigator --cdcp collection_doc_cache.db"
       workdir: "${CHE_PROJECTS_ROOT}/ansible-collection-template/ansible_collections/namespace_example/collection_example"
