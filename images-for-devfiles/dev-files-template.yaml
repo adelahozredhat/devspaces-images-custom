@@ -78,4 +78,70 @@ objects:
         contextDir: images-for-devfiles
       triggers:
         - type: ConfigChange
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      labels:
+        app: ansible-runner-image
+      name: ansible-runner-image
+      namespace: openshift-workspaces
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: ansible-runner-docker-build-images-for-devfiles
+      namespace: openshift-workspaces
+      labels:
+        app: images-for-devfiles
+        name: ansible-runner-docker-build-images-for-devfiles
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: ansible-runner-image:latest
+      
+      strategy:
+        type: Docker
+        dockerStrategy:
+          dockerfilePath: ansible-runner/Dockerfile
+      source:
+        type: Git
+        git:
+          uri: 'https://github.com/adelahozredhat/devspaces-images-custom.git'
+          ref: crw-2-rhel-8
+        contextDir: images-for-devfiles
+      triggers:
+        - type: ConfigChange
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      labels:
+        app: ansible-playbook-image
+      name: ansible-playbook-image
+      namespace: openshift-workspaces
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: ansible-playbook-docker-build-images-for-devfiles
+      namespace: openshift-workspaces
+      labels:
+        app: images-for-devfiles
+        name: ansible-playbook-docker-build-images-for-devfiles
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: ansible-playbook-image:latest
+      
+      strategy:
+        type: Docker
+        dockerStrategy:
+          dockerfilePath: ansible-playbook/Dockerfile
+      source:
+        type: Git
+        git:
+          uri: 'https://github.com/adelahozredhat/devspaces-images-custom.git'
+          ref: crw-2-rhel-8
+        contextDir: images-for-devfiles
+      triggers:
+        - type: ConfigChange
 

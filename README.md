@@ -41,14 +41,23 @@ oc create namespace openshift-workspaces
 
 oc project openshift-workspaces
 
+cd codeready-workspaces-devfileregistry/
+
 oc new-app -f deploy/openshift/crw-devfile-registry.yaml -p REGISTRY="default-route-openshift-image-registry.apps-crc.testing/openshift-workspaces" -p IMAGE="devfile-custom-example" -p IMAGE_TAG="latest" -p PULL_POLICY="Always" -p CHE_DEVFILE_REGISTRY_URL="https://devfile-registry-openshift-workspaces.apps-crc.testing"
+
+cd ..
+
+cd codeready-workspaces-pluginregistry/
 
 oc new-app -f deploy/openshift/crw-plugin-registry.yaml -p REGISTRY="default-route-openshift-image-registry.apps-crc.testing/openshift-workspaces" -p IMAGE="plugin-custom-example" -p IMAGE_TAG="latest" -p PULL_POLICY="Always" -p CHE_PLUGIN_REGISTRY_URL="https://plugin-registry-openshift-workspaces.apps-crc.testing"
 
+cd ..
+
+cd images-for-devfiles/
 
 oc new-app -f dev-files-template.yaml
 
-
+cd ..
 
 Para crear los credenciales de registry
 
