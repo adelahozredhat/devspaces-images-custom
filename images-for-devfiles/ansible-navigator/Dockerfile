@@ -24,6 +24,8 @@ RUN pip3 install --upgrade pip
 RUN pip3 install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
 RUN mkdir /.local
 RUN chmod a+rwx /.local
+RUN mkdir /.cache
+RUN chmod a+rwx /.cache
 
 CMD tail -f /dev/null
 
