@@ -26,19 +26,16 @@ RUN chmod 0755 myvirtual_venv
 RUN source myvirtual_venv/bin/activate
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install setuptools==45.2.0 ansible==5.3.0
-RUN deactivate
 RUN python3 -m venv myvirtual_venv2
 RUN chmod 0755 myvirtual_venv2
 RUN source myvirtual_venv2/bin/activate
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install setuptools==45.2.0 ansible==2.9.0
-RUN deactivate
 RUN python3 -m venv myvirtual_venv3
 RUN chmod 0755 myvirtual_venv3
 RUN source myvirtual_venv3/bin/activate
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install setuptools==45.2.0 ansible==5.3.0
-RUN deactivate
 
 
 
