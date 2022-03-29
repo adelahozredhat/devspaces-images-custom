@@ -18,10 +18,13 @@ USER 0
 
 
 RUN yum -y -q update
-RUN yum install -y -q curl vim policycoreutils python3-policycoreutils yum-utils podman
+RUN yum -y reinstall shadow-utils
+RUN yum install -y -q curl vim policycoreutils python3-policycoreutils yum-utils podman fuse-overlayfs --exclude container-selinux
+
 RUN pip install --upgrade pip
 RUN pip install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
 
+RUN chmod 4755 /usr/bin/newuidmap
 RUN echo 1000660000:10000:5000 > /etc/subuid
 RUN echo 1000660000:10000:5000 > /etc/subgid
 
