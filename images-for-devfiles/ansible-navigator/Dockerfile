@@ -13,24 +13,15 @@
 
 # Builder: check meta.yamls and create index.json
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/python-38
-FROM registry.redhat.io/rhel8/python-38 as builder
+FROM registry.redhat.io/rhel8/podman as builder
 USER 0
 
 
 RUN yum -y -q update
-RUN yum -y reinstall shadow-utils
-RUN yum install -y -q curl vim policycoreutils python3-policycoreutils yum-utils podman fuse-overlayfs --exclude container-selinux
+RUN yum install -y -q curl vim python3 policycoreutils python3-policycoreutils yum-utils podman fuse-overlayfs --exclude container-selinux
 
 RUN pip install --upgrade pip
 RUN pip install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
-
-# RUN chmod 4755 /usr/bin/newuidmap
-RUN echo podman:10000:5000 > /etc/subuid
-RUN echo podman:10000:5000 > /etc/subgid
-
-RUN mkdir /dev/net
-RUN modprobe tun
-
 
 CMD tail -f /dev/null
 
