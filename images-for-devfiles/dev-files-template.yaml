@@ -69,13 +69,13 @@ objects:
       strategy:
         type: Docker
         dockerStrategy:
-          dockerfilePath: ansible-navigator/Dockerfile
+          dockerfilePath: Dockerfile
       source:
         type: Git
         git:
           uri: 'https://github.com/adelahozredhat/devspaces-images-custom.git'
           ref: crw-2-rhel-8
-        contextDir: images-for-devfiles
+        contextDir: images-for-devfiles/ansible-navigator
       triggers:
         - type: ConfigChange
   - apiVersion: v1
