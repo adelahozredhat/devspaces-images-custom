@@ -29,6 +29,8 @@ RUN mkdir /.local
 RUN chmod a+rwx /.local
 RUN mkdir /.cache
 RUN chmod a+rwx /.cache
+RUN mkdir /.config
+RUN chmod a+rwx /.config
 
 RUN useradd podman; \
 echo podman:10000:5000 > /etc/subuid; \
