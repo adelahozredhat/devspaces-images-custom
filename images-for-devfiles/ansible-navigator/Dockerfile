@@ -57,7 +57,8 @@ RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers /var/
 
 ENV _CONTAINERS_USERNS_CONFIGURED=""
 
-USER root
+RUN useradd -ms /bin/bash 1000660000
+USER 1000660000
 
 CMD tail -f /dev/null
 
