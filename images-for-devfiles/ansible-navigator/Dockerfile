@@ -57,6 +57,8 @@ RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers /var/
 
 ENV _CONTAINERS_USERNS_CONFIGURED=""
 
+USER root
+
 CMD tail -f /dev/null
 
 # append Brew metadata here
