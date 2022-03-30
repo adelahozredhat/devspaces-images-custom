@@ -45,12 +45,7 @@ components:
   image: image-registry.openshift-image-registry.svc:5000/openshift-workspaces/ansible-playbook-image
   memoryLimit: 2Gi
   mountSources: true
--
-  type: dockerimage
-  alias: podman
-  image: registry.redhat.io/rhel8/podman
-  memoryLimit: 2Gi
-  mountSources: true
+
 commands:
 
 -
