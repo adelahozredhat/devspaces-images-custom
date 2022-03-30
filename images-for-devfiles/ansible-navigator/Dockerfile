@@ -31,6 +31,8 @@ RUN mkdir /.cache
 RUN chmod a+rwx /.cache
 RUN mkdir /.config
 RUN chmod a+rwx /.config
+RUN chmod 4755 /usr/bin/newgidmap
+RUN chmod 4755 /usr/bin/newuidmap
 
 RUN useradd podman; \
 echo podman:10000:5000 > /etc/subuid; \
