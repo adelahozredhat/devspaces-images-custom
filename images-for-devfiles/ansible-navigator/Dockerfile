@@ -24,6 +24,12 @@ rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 RUN dnf install -y -q curl vim python3 policycoreutils python3-policycoreutils yum-utils
 RUN pip3 install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
 
+
+RUN mkdir /.local
+RUN chmod a+rwx /.local
+RUN mkdir /.cache
+RUN chmod a+rwx /.cache
+
 RUN useradd podman; \
 echo podman:10000:5000 > /etc/subuid; \
 echo podman:10000:5000 > /etc/subgid;
