@@ -1,4 +1,4 @@
-FROM registry.stage.redhat.io/ubi8/ubi:8.5
+FROM registry.redhat.io/ubi8/ubi:8.5
 LABEL maintainer="Red Hat, Inc."
 
 LABEL com.redhat.component="podman-container"
