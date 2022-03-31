@@ -25,12 +25,12 @@ RUN dnf install -y -q curl vim python3 policycoreutils python3-policycoreutils y
 RUN pip3 install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
 
 
-# RUN mkdir /.local
-# RUN chmod a+rwx /.local
-# RUN mkdir /.cache
-# RUN chmod a+rwx /.cache
-# RUN mkdir /.config
-# RUN chmod a+rwx /.config
+RUN mkdir /.local
+RUN chmod a+rwx /.local
+RUN mkdir /.cache
+RUN chmod a+rwx /.cache
+RUN mkdir /.config
+RUN chmod a+rwx /.config
 # RUN chmod a+rwx /usr/bin/newgidmap
 # RUN chmod a+rwx /usr/bin/newuidmap
 # RUN chmod a+rwx /usr/bin/fuse-overlayfs
