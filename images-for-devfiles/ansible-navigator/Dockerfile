@@ -18,7 +18,7 @@ LABEL io.openshift.expose-services=""
 # directories used by yum that are just taking
 # up space.
 RUN dnf -y module enable container-tools:rhel8; dnf -y update; rpm --restore --quiet shadow-utils; \
-dnf -y install crun podman fuse-overlayfs /etc/containers/storage.conf --exclude container-selinux; \
+dnf -y install sudo crun podman fuse-overlayfs /etc/containers/storage.conf --exclude container-selinux; \
 rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
 RUN dnf install -y -q curl vim python3 policycoreutils python3-policycoreutils yum-utils
