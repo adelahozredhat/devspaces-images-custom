@@ -25,33 +25,33 @@ RUN dnf install -y -q curl vim python3 policycoreutils python3-policycoreutils y
 RUN pip3 install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
 
 
-RUN mkdir /.local
-RUN chmod a+rwx /.local
-RUN mkdir /.cache
-RUN chmod a+rwx /.cache
-RUN mkdir /.config
-RUN chmod a+rwx /.config
-RUN chmod a+rwx /usr/bin/newgidmap
-RUN chmod a+rwx /usr/bin/newuidmap
-RUN chmod a+rwx /usr/bin/fuse-overlayfs
+# RUN mkdir /.local
+# RUN chmod a+rwx /.local
+# RUN mkdir /.cache
+# RUN chmod a+rwx /.cache
+# RUN mkdir /.config
+# RUN chmod a+rwx /.config
+# RUN chmod a+rwx /usr/bin/newgidmap
+# RUN chmod a+rwx /usr/bin/newuidmap
+# RUN chmod a+rwx /usr/bin/fuse-overlayfs
 
-RUN useradd podman; \
-echo podman:10000:5000 > /etc/subuid; \
-echo podman:10000:5000 > /etc/subgid;
+# RUN useradd podman; \
+# echo podman:10000:5000 > /etc/subuid; \
+# echo podman:10000:5000 > /etc/subgid;
 
-RUN echo 1000660000:10000:5000 >> /etc/subuid; \
-echo 1000660000:10000:5000 >> /etc/subgid;
+# RUN echo 1000660000:10000:5000 >> /etc/subuid; \
+# echo 1000660000:10000:5000 >> /etc/subgid;
 
-RUN echo 1000650000:10000:5000 >> /etc/subuid; \
-echo 1000650000:10000:5000 >> /etc/subgid;
-
-
+# RUN echo 1000650000:10000:5000 >> /etc/subuid; \
+# echo 1000650000:10000:5000 >> /etc/subgid;
 
 
-VOLUME /var/lib/containers
-RUN mkdir -p /home/podman/.local/share/containers
-RUN chown podman:podman -R /home/podman
-VOLUME /home/podman/.local/share/containers
+
+
+# VOLUME /var/lib/containers
+# RUN mkdir -p /home/podman/.local/share/containers
+# RUN chown podman:podman -R /home/podman
+# VOLUME /home/podman/.local/share/containers
 
 # https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/containers.conf
 ADD containers.conf /etc/containers/containers.conf
@@ -63,14 +63,6 @@ RUN chmod 644 /etc/containers/containers.conf; sed -i -e 's|^#mount_program|moun
 RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers /var/lib/shared/vfs-images /var/lib/shared/vfs-layers; touch /var/lib/shared/overlay-images/images.lock; touch /var/lib/shared/overlay-layers/layers.lock; touch /var/lib/shared/vfs-images/images.lock; touch /var/lib/shared/vfs-layers/layers.lock
 
 ENV _CONTAINERS_USERNS_CONFIGURED=""
-
-RUN useradd  --disabled-password -ms /bin/bash prueba; \
-usermod --add-subuids 200000-201000 --add-subgids 200000-201000 prueba; \
-echo prueba:10000:5000 >> /etc/subuid; \
-echo prueba:10000:5000 >> /etc/subgid;
-
-USER newuser
-WORKDIR /home/newuser
 
 CMD tail -f /dev/null
 
