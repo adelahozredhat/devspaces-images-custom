@@ -34,8 +34,6 @@ RUN chmod a+rwx /.config
 RUN chmod a+rwx /usr/bin/newgidmap
 RUN chmod a+rwx /usr/bin/newuidmap
 
-/usr/bin/
-
 RUN useradd podman; \
 echo podman:10000:5000 > /etc/subuid; \
 echo podman:10000:5000 > /etc/subgid;
