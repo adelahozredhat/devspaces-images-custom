@@ -31,10 +31,8 @@ components:
   type: dockerimage
   alias: ansible-navigator
   image: image-registry.openshift-image-registry.svc:5000/openshift-workspaces/ansible-navigator-image
-  memoryLimit: 2Gi
+  memoryLimit: 4Gi
   mountSources: true
-  command: ['tail']
-  args: ['-f', '/dev/null','--user', '0']
 -
   type: dockerimage
   alias: ansible-runner
