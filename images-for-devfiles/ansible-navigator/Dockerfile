@@ -33,6 +33,7 @@ RUN mkdir /.config
 RUN chmod a+rwx /.config
 RUN chmod a+rwx /usr/bin/newgidmap
 RUN chmod a+rwx /usr/bin/newuidmap
+RUN chmod a+rwx /usr/bin/fuse-overlayfs
 
 RUN useradd podman; \
 echo podman:10000:5000 > /etc/subuid; \
