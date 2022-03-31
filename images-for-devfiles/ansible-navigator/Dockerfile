@@ -64,7 +64,7 @@ RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers /var/
 
 ENV _CONTAINERS_USERNS_CONFIGURED=""
 
-RUN useradd -ms /bin/bash prueba; \
+RUN useradd  --disabled-password -ms /bin/bash prueba; \
 usermod --add-subuids 200000-201000 --add-subgids 200000-201000 prueba; \
 echo prueba:10000:5000 >> /etc/subuid; \
 echo prueba:10000:5000 >> /etc/subgid;
