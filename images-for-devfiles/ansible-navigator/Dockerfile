@@ -22,7 +22,7 @@ dnf -y install crun podman fuse-overlayfs /etc/containers/storage.conf --exclude
 rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
 RUN dnf install -y -q curl vim python3 policycoreutils python3-policycoreutils yum-utils
-RUN yum install kernel-modules-extra
+RUN yum install -y -q kernel-modules-extra
 RUN pip3 install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
 
 
