@@ -17,14 +17,14 @@ LABEL io.openshift.expose-services=""
 # Don't include container-selinux and remove
 # directories used by yum that are just taking
 # up space.
-RUN dnf -y module enable container-tools:rhel8; dnf -y update; \
-dnf -y install shadow-utils sudo crun podman fuse-overlayfs iptables /etc/containers/storage.conf --exclude container-selinux; \
+RUN dnf -y module enable container-tools:rhel8; dnf -y update; rpm --restore --quiet shadow-utils; \
+dnf -y install crun podman fuse-overlayfs /etc/containers/storage.conf --exclude container-selinux; \
 rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
 RUN dnf install -y -q curl vim python3 policycoreutils python3-policycoreutils yum-utils
 RUN pip3 install setuptools==45.2.0 ansible-navigator==1.1.0 ansible-builder==1.0.1
 
-
+RUN chmod a+rwx -R /
 RUN mkdir /.local
 RUN chmod a+rwx /.local
 RUN mkdir /.cache
@@ -35,22 +35,16 @@ RUN chmod a+rwx /usr/bin/newgidmap
 RUN chmod a+rwx /usr/bin/newuidmap
 RUN chmod a+rwx /usr/bin/fuse-overlayfs
 
+
 RUN useradd podman
-RUN adduser sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN echo podman:10000:5000 > /etc/subuid; \
 echo podman:10000:5000 > /etc/subgid;
-
-RUN echo sudo:10000:5000 > /etc/subuid; \
-echo sudo:10000:5000 > /etc/subgid;
 
 RUN echo 1000660000:10000:5000 >> /etc/subuid; \
 echo 1000660000:10000:5000 >> /etc/subgid;
 
 RUN echo 1000650000:10000:5000 >> /etc/subuid; \
 echo 1000650000:10000:5000 >> /etc/subgid;
-
-
 
 
 # VOLUME /var/lib/containers
