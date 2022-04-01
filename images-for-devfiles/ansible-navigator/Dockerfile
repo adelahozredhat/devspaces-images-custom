@@ -47,6 +47,11 @@ RUN echo 1000650000:10000:5000 >> /etc/subuid; \
 echo 1000650000:10000:5000 >> /etc/subgid;
 
 
+RUN echo 1000670000:10000:5000 >> /etc/subuid; \
+echo 1000670000:10000:5000 >> /etc/subgid;
+
+
+
 # VOLUME /var/lib/containers
 # RUN mkdir -p /home/podman/.local/share/containers
 # RUN chown podman:podman -R /home/podman
