@@ -35,7 +35,7 @@ RUN chmod a+rwx /.config
 # RUN chmod a+rwx /usr/bin/newuidmap
 # RUN chmod a+rwx /usr/bin/fuse-overlayfs
 
-RUN useradd podman; \
+RUN useradd podman
 RUN adduser sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # echo podman:10000:5000 > /etc/subuid; \
