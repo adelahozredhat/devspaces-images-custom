@@ -1,0 +1,7 @@
+---
+displayName: Ansible Collection template
+description: Ansible Collection template
+tags: ["Ansible","Ansible collection"]
+icon: /images/type-ansible.svg
+links:
+  v2: https://github.com/crw-samples/gradle-demo-project/tree/devfilev2

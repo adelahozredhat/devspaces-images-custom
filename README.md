@@ -67,4 +67,7 @@ password --> oc whoami -t
 
 añadirlos en la pagina de codeready dle usuario
 
-image-registry.openshift-image-registry.svc:5000
+
+
+
+https://www.redhat.com/sysadmin/podman-inside-kubernetes
