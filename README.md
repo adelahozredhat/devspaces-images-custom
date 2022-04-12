@@ -70,4 +70,39 @@ añadirlos en la pagina de codeready dle usuario
 image-registry.openshift-image-registry.svc:5000
 
 
+## For openshift
+
+oc create namespace openshift-workspaces
+
+oc project openshift-workspaces
+
+cd codeready-workspaces-devfileregistry/
+
+oc new-app -f deploy/openshift/crw-devfile-registry.yaml -p REGISTRY="default-route-openshift-image-registry.apps-crc.testing/openshift-workspaces" -p IMAGE="devfile-custom-example" -p IMAGE_TAG="latest" -p PULL_POLICY="Always" -p CHE_DEVFILE_REGISTRY_URL="https://devfile-registry-openshift-workspaces.apps.cluster-z2rgq.z2rgq.sandbox663.opentlc.com"
+
+cd ..
+
+cd codeready-workspaces-pluginregistry/
+
+oc new-app -f deploy/openshift/crw-plugin-registry.yaml -p REGISTRY="default-route-openshift-image-registry.apps-crc.testing/openshift-workspaces" -p IMAGE="plugin-custom-example" -p IMAGE_TAG="latest" -p PULL_POLICY="Always" -p CHE_PLUGIN_REGISTRY_URL="https://plugin-registry-openshift-workspaces.apps.cluster-z2rgq.z2rgq.sandbox663.opentlc.com"
+
+cd ..
+
+cd images-for-devfiles/
+
+oc new-app -f dev-files-template.yaml
+
+cd ..
+
+Para crear los credenciales de registry
+
+user --> admin
+
+password --> oc whoami -t
+
+añadirlos en la pagina de codeready dle usuario
+
+image-registry.openshift-image-registry.svc:5000
+
+
 https://www.redhat.com/sysadmin/podman-inside-kubernetes
