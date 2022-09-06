@@ -24,7 +24,6 @@ ADD https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 /tmp/
 
 RUN mkdir /tmp/openshift-client-linux \
   && tar xzvf /tmp/openshift-client-linux.tar.gz -C /tmp/openshift-client-linux \
-  && make -C /tmp/openshift-client-linux \
   && rm /tmp/openshift-client-linux.tar.gz
 
 RUN yum -y -q update
