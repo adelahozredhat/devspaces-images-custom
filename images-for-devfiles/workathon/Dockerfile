@@ -22,7 +22,7 @@ ADD https://github.com/argoproj/argo-cd/releases/download/v2.1.3/argocd-linux-am
 ADD https://github.com/mikefarah/yq/releases/download/v4.19.1/yq_linux_amd64 /tmp/
 ADD https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 /tmp/
 
-RUN tar xzvf /tmp/openshift-client-linux.tar.gz \
+RUN tar xzvf /tmp/openshift-client-linux.tar.gz -C /tmp/\
   && make -C /tmp/openshift-client-linux \
   && rm /tmp/openshift-client-linux.tar.gz
 
